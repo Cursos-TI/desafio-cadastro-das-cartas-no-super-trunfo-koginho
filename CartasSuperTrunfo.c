@@ -1,22 +1,86 @@
+// Incluindo as bibliotecas.
 #include <stdio.h>
+#include <string.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+int main() { // Começo da execução.
 
-int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    // Declaração das váriaveis.
+    char estado[40], cartaCodigo[5], cidadeNome[40];
+    int populacao, pontosTuristicos;
+    float areaEmKM, pib;
 
-    return 0;
+    printf("Digite as informações da carta número 1\n");
+
+    printf("Estado: ");
+    fgets(estado, 40, stdin); // Entrada de dado para estado.
+
+    printf("Nome da cidade: ");
+    fgets(cidadeNome, 40, stdin); // Entrada de dado para cidade.
+
+    printf("Digite o código da carta: ");
+    scanf("%s", &cartaCodigo); // Entrada de dado para código.
+
+    printf("População: ");
+    scanf("%d", &populacao); // Entrada de dado para população.
+
+    printf("Área em km²: ");
+    scanf("%f", &areaEmKM); // Entrada de dado para área em km.
+
+    printf("Digite o PIB: ");
+    scanf("%f", &pib); // Entrada de dado para PIB.
+
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &pontosTuristicos); // Entrada de dado para pontos turísticos.
+
+    // Retirando o "\n" criado pela função fgets
+    estado[strcspn(estado, "\n")] = 0;
+    cidadeNome[strcspn(cidadeNome, "\n")] = 0;
+
+    // Primeira impressão de dados.
+    printf("Informações da carta número 1:\n");
+    printf("Estado: %s - Cidade: %s\n", estado, cidadeNome);
+    printf("Código: %s - População: %d\n", cartaCodigo, populacao);
+    printf("Área (km²): %.2f - PIB: %.2f\n", areaEmKM, pib);
+    printf("Em %s tem %d pontos turísticos.\n", cidadeNome, pontosTuristicos);
+
+    // Função para pausar a execução do código.
+    printf("Precione ENTER para continuar... \n");
+    getchar(); // getchar para ler a entrada padrão.
+    getchar(); // usado duas vezes para descartar o dado recebido.
+
+    printf("Digite as informações da carta número 2\n");
+
+    printf("Estado: ");
+    fgets(estado, 40, stdin); // Entrada de dado para estado.
+
+    printf("Nome da cidade: ");
+    fgets(cidadeNome, 40, stdin); // Entrada de dado para cidade.
+
+    printf("Digite o código da carta: ");
+    scanf("%s", &cartaCodigo); // Entrada de dado para código.
+
+    printf("População: ");
+    scanf("%d", &populacao); // Entrada de dado para população.
+
+    printf("Área em km²: ");
+    scanf("%f", &areaEmKM); // Entrada de dado para área em km.
+
+    printf("Digite o PIB: ");
+    scanf("%f", &pib); // Entrada de dado para PIB.
+
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &pontosTuristicos); // Entrada de dado para pontos turísticos.
+
+    // Retirando o "\n" criado pela função fgets
+    estado[strcspn(estado, "\n")] = 0;
+    cidadeNome[strcspn(cidadeNome, "\n")] = 0;
+
+    // Segunda impressão de dados.
+    printf("Informações da carta número 2:\n");
+    printf("Estado: %s - Cidade: %s\n", estado, cidadeNome);
+    printf("Código: %s - População: %d\n", cartaCodigo, populacao);
+    printf("Área (km²): %.2f - PIB: %.2f\n", areaEmKM, pib);
+    printf("Em %s tem %d pontos turísticos.\n", cidadeNome, pontosTuristicos);
+
+    return 0; // Indica que o programa terminou a execução.
 }
