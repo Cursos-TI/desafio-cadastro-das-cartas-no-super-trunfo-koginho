@@ -2,117 +2,354 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() { // Começo da execução.
+int main()
+{ // Começo da execução.
 
-    // Declaração das váriaveis.
-    char estado[40], cartaCodigo[5], cidadeNome[40], estado_2[40], cartaCodigo_2[5], cidadeNome_2[40];
-    int populacao, pontosTuristicos, populacao_2, pontosTuristicos_2;
-    float areaEmKM, pib, areaEmKM_2, pib_2;
+    // Cidade número 1.
+    char estado[40] = "São Paulo", cartaCodigo[5] = "SP-1", cidadeNome[40] = "Campinas.";
+    int populacao = 1139047, pontosTuristicos = 5;
+    float areaEmKM = 794, pib = 72946774.92, densidadePopulacional = (float)populacao / areaEmKM;
 
-    printf("Digite as informações da carta número 1\n");
+    // Cidade número 2.
+    char estado_2[40] = "Ceará", cartaCodigo_2[5] = "CE-1", cidadeNome_2[40] = "Milagres";
+    int populacao_2 = 28316, pontosTuristicos_2 = 30;
+    float areaEmKM_2 = 605, pib_2 = 87198.973, densidadePopulacional_2 = (float)populacao_2 / areaEmKM_2;
 
-    printf("Estado: ");
-    fgets(estado, 40, stdin); // Entrada de dado para estado.
+    // Variáveis do menu interativo.
+    int userOption, player_1, player_2, attributeChoosed;
 
-    printf("Nome da cidade: ");
-    fgets(cidadeNome, 40, stdin); // Entrada de dado para cidade.
+    printf("-=-= Bem vindo ao Super trunfo em C =-=-\n");
+    printf("-= 1. Regras.\n");
+    printf("-= 2. Iniciar.\n");
+    printf("-= 3. Sair.\n");
+    printf("-= Escolha uma opção: ");
+    scanf("%d", &userOption);
 
-    printf("Digite o código da carta: ");
-    scanf("%s", &cartaCodigo); // Entrada de dado para código da carta.
+    // Menu
+    switch (userOption)
+    {
+    case 1:
+        printf("-= Regras =-\n");
+        printf("-= 1. Cada jogador escolhe uma carta.\n");
+        printf("-= 2. O primeiro jogador escolhe o atributo a ser comparado.\n");
+        printf("-= 3. Comparação, os jogadores verificam qual das cartas venceu.\n");
+        printf("-= 4. O vencedor da primeira rodada escolhere o proximo atributo.");
+        break;
+    case 2:
 
-    printf("População: ");
-    scanf("%d", &populacao); // Entrada de dado para população.
+        // Exibindo as cartas e coletando a escolha do usuário.
+        printf("-= Super Trunfo C =-\n");
+        printf("-= 1. Campinas - São Paulo.\n");
+        printf("-= 2. Milagres - Ceará.\n");
+        printf("-= Escolha a primeira carta: ");
+        scanf("%d", &player_1);
 
-    printf("Área em km²: ");
-    scanf("%f", &areaEmKM); // Entrada de dado para área em km.
+        // Exibindo para para o usuário a primeira carta escolhida.
+        switch (player_1)
+        {
+        case 1:
+            printf("Carta escolhida: Campinas - São Paulo.\n");
+            break;
+        case 2:
+            printf("Carta escolhida: Milagres - Ceará.\n");
+            break;
+        default:
+            printf("Carta invalida...\n");
+            break;
+        }
 
-    printf("Digite o PIB: ");
-    scanf("%f", &pib); // Entrada de dado para PIB.
+        printf("-=-=-=-=-=-=-=-=-=-=-\n");
+        printf("-= Super Trunfo C =-\n");
+        printf("-= 1. Campinas - São Paulo.\n");
+        printf("-= 2. Milagres - Ceará.\n");
+        printf("-= Escolha a segunda carta: ");
+        scanf("%d", &player_2);
 
-    printf("Número de pontos turísticos: ");
-    scanf("%d", &pontosTuristicos); // Entrada de dado para pontos turísticos.
+        // Exibindo para para o usuário a segunda carta escolhida.
+        switch (player_2)
+        {
+        case 1:
+            printf("Carta escolhida: Campinas - São Paulo.\n");
+            break;
+        case 2:
+            printf("Carta escolhida: Milagres - Ceará.\n");
+            break;
+        default:
+            printf("Carta invalida...\n");
+            break;
+        }
 
-    // Retirando o "\n" criado pela função fgets
-    estado[strcspn(estado, "\n")] = 0;
-    cidadeNome[strcspn(cidadeNome, "\n")] = 0;
+        // Escolha do atributo a ser comparado
+        printf("-=-=-=-=-=-=-=-=-=-=-\n");
+        printf("-= Super Trunfo C =-\n");
+        printf("-= 1. População.\n");
+        printf("-= 2. Área.\n");
+        printf("-= 3. PIB.\n");
+        printf("-= 4. Número de pontos turísticos.\n");
+        printf("-= 5. Densidade demográfica.\n");
+        printf("-= Escolha o atributo que vai ser comparado: ");
+        scanf("%d", &attributeChoosed);
 
-    // Calculando PIB per capita e Densidade Populacional
-    float pibPerCapita = (pib / populacao);
-    float densidadePopulacional = (populacao / areaEmKM);
+        switch (attributeChoosed)
+        {
+        case 1: // População
+            // Lógica do jogo para verificar o vencedor
+            if (player_1 == player_2) // Verificar se o jogo empatou.
+            {
+                printf("-= Ambos os jogadores escolheram a mesma carta.\n");
+                printf("-= Resultado: Empate!\n");
+            }
 
+            else if (player_1 == 1 && player_2 == 2)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: População.\n");
+                printf("-= Primeira carta: %s - População: %d\n", cartaCodigo, populacao);
+                printf("-= Segunda carta: %s - População: %d\n", cartaCodigo_2, populacao_2);
+                if (populacao > populacao_2)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (populacao_2 > populacao)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            else if (player_1 == 2 && player_2 == 1)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: População.\n");
+                printf("-= Primeira carta: %s - População: %d\n", cartaCodigo_2, populacao_2);
+                printf("-= Segunda carta: %s - População: %d\n", cartaCodigo, populacao);
+                if (populacao_2 > populacao)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (populacao > populacao_2)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            break;
 
-    // Primeira impressão de dados, exibe informações da carta 1.
-    printf("Informações da carta número 1:\n");
-    printf("Estado: %s - Cidade: %s\n", estado, cidadeNome);
-    printf("Código: %s - População: %d\n", cartaCodigo, populacao);
-    printf("Área (km²): %.2f - PIB: %.2f\n", areaEmKM, pib);
-    printf("Em %s tem %d pontos turísticos.\n", cidadeNome, pontosTuristicos);
-    printf("O PIB per capita: %.2f\n", pibPerCapita);
-    printf("Densidade Populacional: %.3f hab./km².\n", densidadePopulacional);
+        case 2:
+            printf("-= Atributo escolhido: Área.\n");
+            if (player_1 == player_2) // Verificar se o jogo empatou.
+            {
+                printf("-= Ambos os jogadores escolheram a mesma carta.\n");
+                printf("-= Resultado: Empate!\n");
+            }
+            else if (player_1 == 1 && player_2 == 2)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: Área.\n");
+                printf("-= Primeira carta: %s - Área: %.2f\n", cartaCodigo, areaEmKM);
+                printf("-= Segunda carta: %s - Área: %.2f\n", cartaCodigo_2, areaEmKM_2);
+                if (areaEmKM > areaEmKM_2)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (areaEmKM_2 > areaEmKM)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            else if (player_1 == 2 && player_2 == 1)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: Área.\n");
+                printf("-= Primeira carta: %s - Área: %.2f\n", cartaCodigo_2, areaEmKM_2);
+                printf("-= Segunda carta: %s - Área: %.2f\n", cartaCodigo, areaEmKM);
+                if (areaEmKM_2 > areaEmKM)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (areaEmKM > areaEmKM_2)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            break;
 
-    // Função para pausar a execução do código.
-    printf("Preciona ENTER para continuar. \n");
-    getchar(); // getchar para ler a entrada padrão.
-    getchar(); // usado duas vezes para descartar o dado recebido.
+        case 3:
+            printf("-= Atributo escolhido: PIB.\n");
+            if (player_1 == player_2) // Verificar se o jogo empatou.
+            {
+                printf("-= Ambos os jogadores escolheram a mesma carta.\n");
+                printf("-= Resultado: Empate!\n");
+            }
+            else if (player_1 == 1 && player_2 == 2)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: PIB.\n");
+                printf("-= Primeira carta: %s - PIB: %.2f\n", cartaCodigo, pib);
+                printf("-= Segunda carta: %s - PIB: %.2f\n", cartaCodigo_2, pib_2);
+                if (pib > pib_2)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (pib_2 > pib)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            else if (player_1 == 2 && player_2 == 1)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: PIB.\n");
+                printf("-= Primeira carta: %s - PIB: %.2f\n", cartaCodigo_2, pib_2);
+                printf("-= Segunda carta: %s - PIB: %.2f\n", cartaCodigo, pib);
+                if (pib_2 > pib)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (pib > pib_2)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            break;
 
-    printf("Digite as informações da carta número 2\n");
+        case 4:
+            printf("-= Atributo escolhido: Número de pontos turísticos.\n");
+            if (player_1 == player_2) // Verificar se o jogo empatou.
+            {
+                printf("-= Ambos os jogadores escolheram a mesma carta.\n");
+                printf("-= Resultado: Empate!\n");
+            }
+            else if (player_1 == 1 && player_2 == 2)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: Pontos turísticos.\n");
+                printf("-= Primeira carta: %s - Pontos turísticos: %d\n", cartaCodigo, pontosTuristicos);
+                printf("-= Segunda carta: %s - Pontos turísticos: %d\n", cartaCodigo_2, pontosTuristicos_2);
+                if (pontosTuristicos > pontosTuristicos_2)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (pontosTuristicos_2 > pontosTuristicos)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate.\n");
+                }
+            }
+            else if (player_1 == 2 && player_2 == 1)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: Pontos turísticos.\n");
+                printf("-= Primeira carta: %s - Pontos turísticos: %d\n", cartaCodigo_2, pontosTuristicos_2);
+                printf("-= Segunda carta: %s - Pontos turísticos: %d\n", cartaCodigo, pontosTuristicos);
+                if (pontosTuristicos_2 > pontosTuristicos)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (pontosTuristicos > pontosTuristicos_2)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            break;
 
-    printf("Estado: ");
-    fgets(estado_2, 40, stdin); // Entrada de dado para estado.
+        case 5:
+            printf("-= Atributo escolhido: Densidade demográfica.\n");
+            if (player_1 == player_2) // Verificar se o jogo empatou.
+            {
+                printf("-= Ambos os jogadores escolheram a mesma carta.\n");
+                printf("-= Resultado: Empate!\n");
+            }
+            else if (player_1 == 1 && player_2 == 2)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: Densidade demográfica.\n");
+                printf("-= Primeira carta: %s - Densidade demográfica: %.4f\n", cartaCodigo, densidadePopulacional);
+                printf("-= Segunda carta: %s - Densidade demográfica: %.4f\n", cartaCodigo_2, densidadePopulacional_2);
+                if (densidadePopulacional < densidadePopulacional_2)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (densidadePopulacional_2 < densidadePopulacional)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            else if (player_1 == 2 && player_2 == 1)
+            {
+                printf("-=-=-=-=-=-=-=-=-=-=-\n");
+                printf("-= Super Trunfo C =-\n");
+                printf("-= O atributo escolhido foi: Densidade demográfica.\n");
+                printf("-= Primeira carta: %s - Densidade demográfica: %.4f\n", cartaCodigo_2, densidadePopulacional_2);
+                printf("-= Segunda carta: %s - Densidade demográfica: %.4f\n", cartaCodigo, densidadePopulacional);
+                if (densidadePopulacional_2 < densidadePopulacional)
+                {
+                    printf("-= Resultado: Primeira carta venceu!\n");
+                }
+                else if (densidadePopulacional < densidadePopulacional_2)
+                {
+                    printf("-= Resultado: Segunda carta venceu!\n");
+                }
+                else
+                {
+                    printf("-= Resultado: Empate!\n");
+                }
+            }
+            break;
 
-    printf("Nome da cidade: ");
-    fgets(cidadeNome_2, 40, stdin); // Entrada de dado para cidade.
+        default:
+            printf("Alternativa invalida!\n");
+            break;
+        }
+        break;
 
-    printf("Digite o código da carta: ");
-    scanf("%s", &cartaCodigo_2); // Entrada de dados para código da carta.
+    case 3:
+        printf("Saindo...");
+        break;
 
-    printf("População: ");
-    scanf("%d", &populacao_2); // Entrada de dado para população.
-
-    printf("Área em km²: ");
-    scanf("%f", &areaEmKM_2); // Entrada de dado para área em km.
-
-    printf("Digite o PIB: ");
-    scanf("%f", &pib_2); // Entrada de dado para PIB.
-
-    printf("Número de pontos turísticos: ");
-    scanf("%d", &pontosTuristicos_2); // Entrada de dado para pontos turísticos.
-
-    // Retirando o "\n" criado pela função fgets
-    estado_2[strcspn(estado_2, "\n")] = 0;
-    cidadeNome_2[strcspn(cidadeNome_2, "\n")] = 0;
-
-    // Calculando PIB per capita e Densidade Populacional da segunda carta.
-    float pibPerCapita_2 = (pib_2 / populacao_2);
-    float densidadePopulacional_2 = (populacao_2 / areaEmKM_2);
-
-    // Segunda impressão de dados, exibe informações da carta 2.
-    printf("Informações da carta número 2:\n");
-    printf("Estado: %s - Cidade: %s\n", estado_2, cidadeNome_2);
-    printf("Código: %s - População: %d\n", cartaCodigo_2, populacao_2);
-    printf("Área (km²): %.2f - PIB: %.2f\n", areaEmKM_2, pib_2);
-    printf("Em %s tem %d pontos turísticos.\n", cidadeNome_2, pontosTuristicos_2);
-    printf("O PIB per capita: %.2f\n", pibPerCapita_2);
-    printf("Densidade Populacional: %.3f hab./km².\n", densidadePopulacional_2);
-
-    // Função para pausar a execução do código.
-    printf("Preciona ENTER para exibir a carta vencedora em relação a quantidade de pontos turisticos. \n");
-    getchar(); // getchar para ler a entrada padrão.
-    getchar(); // usado duas vezes para descartar o dado recebido.
-
-    // Estrutura de decisão para verificar qual das duas cartas possue mais pontos turisticos.
-    if(pontosTuristicos > pontosTuristicos_2) {
-        // Bloco de código caso carta 1 seja maior que carta 2
-        printf("Carta 1: %s: %i.\n", cidadeNome, pontosTuristicos);
-        printf("Carta 2: %s: %i.\n", cidadeNome_2, pontosTuristicos_2);
-        printf("Resultado: A Carta 1 (%s) é a vencedora.\n", cidadeNome);
-    } else {
-        // Bloco de código caso carta 2 seja maior que carta 1
-        printf("Carta 1- %s: %i.\n", cidadeNome, pontosTuristicos);
-        printf("Carta 2- %s: %i.\n", cidadeNome_2, pontosTuristicos_2);
-        printf("Resultado: A Carta 2 é a vencedora.\n", cartaCodigo_2);
+    default:
+        printf("Opção invalida!..");
+        break;
     }
-
-    return 0; // Indica que o programa terminou a execução.
-
 }
